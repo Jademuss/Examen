@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Inicio</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'styles/menu.css' %}"/>
+        <link rel="stylesheet" href="{% static 'styles/main.css' %}"/>
+        <link href="https://file.myfontastic.com/BCwNLSewuX3SRWpNHcCZnR/icons.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="menu-container">
+            <a id="ref" href="index.html"><span class="icon-paw"></span></a>
+            <label id="btn-menu" class="icon-bars"></label>
+            <nav id="navegador">
+                <ul>
+                    <li><a href="index.html" class="item-link">Inicio</a></li>
+                    <li><a href="listaProducto.html" class="item-link">Lista Productos</a></li>
+                    <li><a href="registroProducto.html" class="item-link">Registrar Producto</a></li>     
+                    <li><a href="registroTienda.html" class="item-link">Registrar Tienda</a></li>  
+                    {% if user.is_anonymous %} 
+                    <li><a href="login.html" class="item-link">Iniciar Sesion</a></li>       
+                    {% endif %}    
+                    {% if user.is_superuser %}
+                    <li><a href="validarTienda.html" class="item-link">Validacion</a></li>                   
+                    <li><a href="/admin/login/?next=/admin/" class="item-link">Administracion</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        <div class="full-container">
+            <div class="general-container">
+                <div class="container-informacion">
+                    <div class="titulo">
+                        ¿Cual es la función de esta página?
+                    </div>
+                    <div class="texto">
+                        <p>
+                            La funcion principal de esta pagina es la de crear listas de compra
+                            en las cuales la comunidad sera el principal foco de atencion.
+                            ¿A que nos refirimos con esto?
+                            Simple, la comunidad podra ingresar productos y tambien sugerir tiendas
+                            las cuales prodran ser verificadas o no segun la veracidad de la 
+                            informacion, todo esto sera administrado por los staff de la pagina.  
+                        </p>
+                    </div>
+                    <div class="info-image">
+                        <img src="{% static 'img/funcion.jpg' %}" alt="Imagen funcion">
+                    </div>
+                </div>
+            </div>
+
+            <div class="general-container">
+                    <div class="container-informacion">
+                        <div class="titulo">
+                            Historia detras de la creacion de esta pagina
+                        </div>
+                        <div class="texto">
+                            <p>
+                                Un grupo de estudiantes de la Escuela de Emprendimiento ha desarrollado una idea de negocio
+                                relacionada con una aplicación web progresiva que permita a sus usuarios elaborar listas de
+                                compras con la intención de ordenar sus presupuestos de gastos y mejorar sus finanzas. 
+                                Y ahora estamos aqui trabajando para intentar hacer lo mejor que se pueda para salvar esta nota.
+                            </p>
+                        </div>
+                        <div class="info-image">
+                            <img src="{% static 'img/historia.jpg' %}" alt="Imagen historia">
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <script src="{% static 'js/javamenu.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ValidarTienda</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'styles/menu.css' %}"/>
+        <link rel="stylesheet" href="{% static 'styles/main.css' %}"/>
+        <link href="https://file.myfontastic.com/BCwNLSewuX3SRWpNHcCZnR/icons.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="menu-container">
+            <a id="ref" href="index.html"><span class="icon-paw"></span></a>
+            <label id="btn-menu" class="icon-bars"></label>
+            <nav id="navegador">
+                <ul>
+                    <li><a href="index.html" class="item-link">Inicio</a></li>
+                    <li><a href="listaProducto.html" class="item-link">Lista Productos</a></li>
+                    <li><a href="registroProducto.html" class="item-link">Registrar Producto</a></li>     
+                    <li><a href="registroTienda.html" class="item-link">Registrar Tienda</a></li>  
+                    {% if user.is_anonymous %} 
+                    <li><a href="login.html" class="item-link">Iniciar Sesion</a></li>       
+                    {% endif %}    
+                    {% if user.is_superuser %}
+                    <li><a href="validarTienda.html" class="item-link">Validacion</a></li>                   
+                    <li><a href="/admin/login/?next=/admin/" class="item-link">Administracion</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        <script src="{% static 'js/javamenu.js' %}"></script>
+    </body>
