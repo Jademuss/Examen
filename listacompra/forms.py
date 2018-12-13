@@ -12,4 +12,4 @@ class TiendaForm(forms.ModelForm):
     
     class Meta:
         model = TiendasM
-        fields  = ['nombre','sucursal','direccion','ciudad','region',]
+        fields  = ['nombre','image_tienda','sucursal','direccion','ciudad','region',]

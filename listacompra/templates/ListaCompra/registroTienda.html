@@ -13,53 +13,58 @@
 
     <body>
         <div class="menu-container">
-            <a id="ref" href="index.html"><span class="icon-paw"></span></a>
+            <a id="ref" href="{% url 'index' %}"><span class="icon-paw"></span></a>
             <label id="btn-menu" class="icon-bars"></label>
             <nav id="navegador">
                 <ul>
-                    <li><a href="index.html" class="item-link">Inicio</a></li>
-                    <li><a href="listaProducto.html" class="item-link">Lista Productos</a></li>
-                    <li><a href="registroProducto.html" class="item-link">Registrar Producto</a></li>     
-                    <li><a href="registroTienda.html" class="item-link">Registrar Tienda</a></li>  
+                    <li><a href="{% url 'index' %}" class="item-link">Inicio</a></li>
+                    <li><a href="{% url 'listaProducto' %}" class="item-link">Lista Productos</a></li>
+                    <li><a href="{% url 'registroProducto' %}" class="item-link">Registrar Producto</a></li>     
+                    <li><a href="{% url 'registroTienda' %}" class="item-link">Registrar Tienda</a></li>  
                     {% if user.is_anonymous %} 
-                    <li><a href="login.html" class="item-link">Iniciar Sesion</a></li>       
+                    <li><a href="{% url 'login' %}" class="item-link">Iniciar Sesion</a></li>       
                     {% endif %}    
                     {% if user.is_superuser %}
-                    <li><a href="validarTienda.html" class="item-link">Validacion</a></li>                   
+                    <li><a href="{% url 'validarTienda' %}" class="item-link">Validacion</a></li>                   
                     <li><a href="/admin/login/?next=/admin/" class="item-link">Administracion</a></li>
                     {% endif %}
                 </ul>
             </nav>
         </div>
-
+        
         <div class="formulario-container">
             <div class="titulo">
                 <h1>Ingresar Tienda</h1>
             </div>    
-            <form action="registroTienda.html" method="post">
+            <form action="{% url 'registroTienda' %}" enctype="multipart/form-data" method="post">
                 {% csrf_token %}
                 <div class="form-item">
-                    <label for="{{ form.message.nombre}}">Nombre:</label>
+                    <label for="{{ form.message.nombre }}">Nombre:</label>
                     {{ form.nombre }}
+                </div>
+
+                <div class="form-item">
+                    <label for="{{ form.message.image_tienda }}">Imagen Tienda:</label>
+                    {{ form.image_tienda }}
                 </div>
                 
                 <div class="form-item">
-                    <label for="{{ form.message.sucursal}}">Sucursal:</label>
+                    <label for="{{ form.message.sucursal }}">Sucursal:</label>
                     {{ form.sucursal }}
                 </div>
 
                 <div class="form-item">
-                    <label for="{{ form.message.direccion}}">Direccion:</label>
+                    <label for="{{ form.message.direccion }}">Direccion:</label>
                     {{ form.direccion }}
                 </div>
 
                 <div class="form-item">
-                    <label for="{{ form.message.ciudad}}">Ciudad:</label>
+                    <label for="{{ form.message.ciudad }}">Ciudad:</label>
                     {{ form.ciudad }}
                 </div>
 
                 <div class="form-item">
-                    <label for="{{ form.message.region}}">Region:</label>
+                    <label for="{{ form.message.region }}">Region:</label>
                     {{ form.region }}
                 </div>
 

@@ -4,10 +4,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>RegistrarProducto</title>
+        <title>DetalleTienda</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'styles/menu.css' %}"/>
-        <link rel="stylesheet" href="{% static 'styles/formularioProducto.css' %}"/>
+        <link rel="stylesheet" href="{% static 'styles/detalleProducto.css' %}"/>
         <link href="https://file.myfontastic.com/BCwNLSewuX3SRWpNHcCZnR/icons.css" rel="stylesheet">
     </head>
 
@@ -32,49 +32,43 @@
             </nav>
         </div>
 
-        <div class="formulario-container">
-            <div class="titulo">
-                <h1>Ingresar Producto</h1>
-            </div>    
-            <form action="{% url 'registroProducto' %}" enctype="multipart/form-data" method="post">
-                {% csrf_token %}
-                <div class="form-item">
-                    <label for="{{ form.message.nombre}}">Nombre:</label>
-                    {{ form.nombre }}
-                </div>
-                
-                <div class="form-item">
-                    <label for="{{ form.message.image_producto}}">Imagen Producto:</label>
-                    {{ form.image_producto }}
-                </div>
+        <div class="contenedor-detalle">
+                {% if tienda.nombre %}
+                <div class="item-list">
+                    <div class="item-list-img">
+                        {% if tienda.image_tienda %}
+                        <img src="{{ tienda.image_tienda.url }}" alt="imagen tienda">
+                        {% endif %}
+                    </div>
 
-                <div class="form-item">
-                    <label for="{{ form.message.costo_presupuestado}}">Costo Presupuestado:</label>
-                    {{ form.costo_presupuestado }}
-                </div>
+                    <div class="item-list-info">
+                        <div class="item-list-data">Nombre:</div>
+                        <div class="item-list-name">
+                            <p>{{ tienda.nombre }}</p>
+                        </div>    
 
-                <div class="form-item">
-                    <label for="{{ form.message.costo_real}}">Costo Real:</label>
-                    {{ form.costo_real }}
-                </div>
+                        <div class="item-list-data">Sucursal:</div>
+                        <div class="item-list-raza">
+                            <p>${{ tienda.sucursal }}</p>
+                        </div>
 
-                <div class="form-item">
-                    <label for="{{ form.message.tienda_compra}}">Tienda:</label>
-                    {{ form.tienda_compra }}
-                </div>
+                        <div class="item-list-data">Direccion:</div>
+                        <div class="item-list-estado">
+                            <p>${{ tienda.direccion }}</p>
+                        </div>
 
-                <div class="form-item">
-                    <label for="{{ form.message.notas}}">Notas Adicionales:</label>
-                    {{ form.notas }}
+                        <div class="item-list-data">Ciudad:</div>
+                        <div class="item-list-descripcion">
+                            <p> {{ tienda.ciudad }}</p>
+                        </div>
+                        <div class="item-list-data">Region:</div>
+                        <div class="item-list-descripcion">
+                            <p> {{ tienda.region }}</p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-button">
-                    <button type="submit" value="Submit">Registrar</button>
-                </div>
-            </form>
+            </div>
+            {% endif %}
         </div>
-
-
-
         <script src="{% static 'js/javamenu.js' %}"></script>
     </body>

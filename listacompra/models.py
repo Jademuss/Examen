@@ -16,6 +16,7 @@ class ProductosM(models.Model):
 class TiendasM(models.Model):
     nombre              = models.CharField(max_length=20)
     id_tienda           = models.AutoField(primary_key=True)
+    image_tienda        = models.ImageField(blank=True,null=True, upload_to = "tienda/%Y/%m/$d/")
     sucursal            = models.CharField(max_length=20)
     direccion           = models.CharField(max_length=30)
     ciudad              = models.CharField(max_length=20)

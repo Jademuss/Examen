@@ -7,29 +7,77 @@
         <title>ValidarTienda</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'styles/menu.css' %}"/>
-        <link rel="stylesheet" href="{% static 'styles/main.css' %}"/>
+        <link rel="stylesheet" href="{% static 'styles/listaProducto.css' %}"/>
         <link href="https://file.myfontastic.com/BCwNLSewuX3SRWpNHcCZnR/icons.css" rel="stylesheet">
     </head>
 
     <body>
         <div class="menu-container">
-            <a id="ref" href="index.html"><span class="icon-paw"></span></a>
+            <a id="ref" href="{% url 'index' %}"><span class="icon-paw"></span></a>
             <label id="btn-menu" class="icon-bars"></label>
             <nav id="navegador">
                 <ul>
-                    <li><a href="index.html" class="item-link">Inicio</a></li>
-                    <li><a href="listaProducto.html" class="item-link">Lista Productos</a></li>
-                    <li><a href="registroProducto.html" class="item-link">Registrar Producto</a></li>     
-                    <li><a href="registroTienda.html" class="item-link">Registrar Tienda</a></li>  
+                    <li><a href="{% url 'index' %}" class="item-link">Inicio</a></li>
+                    <li><a href="{% url 'listaProducto' %}" class="item-link">Lista Productos</a></li>
+                    <li><a href="{% url 'registroProducto' %}" class="item-link">Registrar Producto</a></li>     
+                    <li><a href="{% url 'registroTienda' %}" class="item-link">Registrar Tienda</a></li>  
                     {% if user.is_anonymous %} 
-                    <li><a href="login.html" class="item-link">Iniciar Sesion</a></li>       
+                    <li><a href="{% url 'login' %}" class="item-link">Iniciar Sesion</a></li>       
                     {% endif %}    
                     {% if user.is_superuser %}
-                    <li><a href="validarTienda.html" class="item-link">Validacion</a></li>                   
+                    <li><a href="{% url 'validarTienda' %}" class="item-link">Validacion</a></li>                   
                     <li><a href="/admin/login/?next=/admin/" class="item-link">Administracion</a></li>
                     {% endif %}
                 </ul>
             </nav>
+        </div>
+
+        <div>
+                <div class="flex-container">
+                        {% if lista_de_tiendas %}
+                        {% for tienda in lista_de_tiendas %}  
+                        <div class="item-list">
+                            <div class="item-list-img">
+                                <a href="{% url 'detalleTienda' pk=tienda.pk %} "> 
+                                {% if tienda.image_tienda %}  
+                                    <img src="{{ tienda.image_tienda.url }}" alt="">
+                                {% endif %}    
+                                </a>
+                            </div>
+                            <div class="item-list-info">
+                              
+                                <div class="item-list-data">Nombre:</div>
+                                <div class="item-list-data">
+                                    <p id="height">{{ tienda.nombre }}</p>
+                                </div>
+
+                                <div class="item-list-data">Sucursal:</div>
+                                <div class="item-list-data">
+                                    <p id="height">${{ tienda.sucursal }}</p>
+                                </div>
+
+                                <div class="item-list-data">Direccion:</div>
+                                <div class="item-list-data">
+                                    <p id="height">${{ tienda.direccion }}</p>
+                                </div>
+
+                                <div class="item-list-data">Ciudad:</div>
+                                <div class="item-list-data">
+                                    <p id="height">${{ tienda.ciudad }}</p>
+                                </div>
+
+                                <div class="item-list-data">Region:</div>
+                                <div class="item-list-data">
+                                    <p id="height">${{ tienda.region }}</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        {% endfor %}  
+                        {% else %}   
+                        <h2>Lo sentimos, no hay ninguna tienda disponible</h2>
+                        {% endif %}        
+                    </div>
         </div>
         <script src="{% static 'js/javamenu.js' %}"></script>
     </body>

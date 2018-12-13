@@ -5,12 +5,12 @@ from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
 
     path('', views.index, name='index'),
-    path('index.html', views.index, name='index2'),
-    path('login.html', views.login, name='login'),
-    path('registroProducto.html', views.registroProducto, name='registroProducto'),
-    path('registroTienda.html', views.registroTienda, name='registroTienda'),
-    path('listaProducto.html', views.listaProductos, name='listarProducto'),
-    path('<int:pk>', views.detalleProducto, name='detalleProducto'), 
-    path('validarTienda.html', views.validarTienda, name='validarTienda'),
+    path('index/login/', views.login, name='login'),
+    path('index/registroProducto/', views.registroProducto, name='registroProducto'),
+    path('index/detalleProducto/<int:pk>/', views.detalleProducto, name='detalleProducto'), 
+    path('index/registroTienda/', views.registroTienda, name='registroTienda'),
+    path('index/detalleTienda/<int:pk>/', views.detalleTienda, name='detalleTienda'),
+    path('index/listaProducto/', views.listaProductos, name='listaProducto'),
+    path('index/validarTienda/', views.validarTienda, name='validarTienda'),
 
 ]	

@@ -39,6 +39,11 @@ def registroProducto(request):
     context = {'form':form}
     return render(request, 'listacompra/registroProducto.html',context)
 
+def detalleTienda(request,pk):
+    tienda = get_object_or_404(TiendasM,pk=pk)
+    context = {'tienda':tienda}
+    return render (request, 'listacompra/detalleTienda.html',context)  
+
 def registroTienda(request):
     if request.method == 'POST':
         form = TiendaForm(request.POST,request.FILES)
@@ -53,4 +58,6 @@ def registroTienda(request):
 
 
 def validarTienda(request):
-    return render(request, 'listacompra/validarTienda.html')
+    lista_de_tiendas = TiendasM.objects.all()
+    context = {'lista_de_tiendas': lista_de_tiendas}
+    return render(request, 'listacompra/validarTienda.html',context)
