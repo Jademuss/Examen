@@ -13,26 +13,24 @@
     </head>
 
     <body>
-        <div class="menu-container">
-<<<<<<< HEAD
-<<<<<<< HEAD
+        <div class="menu-container">           
+
             <a id="ref" href="{% url 'index' %}"><span class="icon-shop"></span></a>
-=======
-            <a id="ref" href="{% url 'index' %}"><img class="icon-paw" src="{% static 'img/icono.jpg' %}"></img></a>
->>>>>>> 2bd48d276ddcb56354395bf73f118a8ed85df07a
-=======
-            <a id="ref" href="{% url 'index' %}"><span class="icon-shop"></span></a>
->>>>>>> developjaviera
             <label id="btn-menu" class="icon-bars"></label>
             <nav id="navegador">
                 <ul>
+            
                     <li><a href="{% url 'index' %}" class="item-link">Inicio</a></li>
                     <li><a href="{% url 'listaProducto' %}" class="item-link">Lista Productos</a></li>
                     <li><a href="{% url 'registroProducto' %}" class="item-link">Registrar Producto</a></li>     
                     <li><a href="{% url 'registroTienda' %}" class="item-link">Registrar Tienda</a></li>  
                     {% if user.is_anonymous %} 
                     <li><a href="{% url 'login' %}" class="item-link">Iniciar Sesion</a></li>       
-                    {% endif %}    
+                    {% endif %} 
+                    {% if user.is_authenticated %}
+                    {{ user.username }}
+                    <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+                    {% endif %}   
                     {% if user.is_superuser %}
                     <li><a href="{% url 'validarTienda' %}" class="item-link">Validacion</a></li>                   
                     <li><a href="/admin/login/?next=/admin/" class="item-link">Administracion</a></li>
