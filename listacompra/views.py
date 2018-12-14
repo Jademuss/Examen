@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status  
 from .serializers import productoSerializer,tiendaSerializer
+from django.views.generic import TemplateView
 
 def index(request):
     return render(request, 'listacompra/index.html')
@@ -61,3 +62,6 @@ def validarTienda(request):
     lista_de_tiendas = TiendasM.objects.all()
     context = {'lista_de_tiendas': lista_de_tiendas}
     return render(request, 'listacompra/validarTienda.html',context)
+
+class HomePageView(TemplateView):
+    template_name = 'listacompra/home.html'    

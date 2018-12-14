@@ -8,6 +8,8 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('users/', include('users.urls')),
+    path('users/', include('django.contrib.auth.urls')),
     path('', include('listacompra.urls')),
 ]
 if settings.DEBUG:
