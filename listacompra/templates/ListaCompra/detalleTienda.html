@@ -35,6 +35,26 @@
         <div class="contenedor-detalle">
                 {% if tienda.nombre %}
                 <div class="item-list">
+                    {% if user.is_superuser %}
+                    <div class="item-list-info">
+                        <div class="confirmacion">
+                            <p> 
+                                Esta tienda aun requiere validacion.
+                            </p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="item-list-info">
+                        <div class="confirmacion">
+                            <p> 
+                                El ingreso de la tienda se realizo correctamente,
+                                este sera revisado por un administrador para comprobar
+                                que los datos proporcionados son correctos. 
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %} 
+                     
                     <div class="item-list-img">
                         {% if tienda.image_tienda %}
                         <img src="{{ tienda.image_tienda.url }}" alt="imagen tienda">
@@ -49,12 +69,12 @@
 
                         <div class="item-list-data">Sucursal:</div>
                         <div class="item-list-raza">
-                            <p>${{ tienda.sucursal }}</p>
+                            <p>{{ tienda.sucursal }}</p>
                         </div>
 
                         <div class="item-list-data">Direccion:</div>
                         <div class="item-list-estado">
-                            <p>${{ tienda.direccion }}</p>
+                            <p>{{ tienda.direccion }}</p>
                         </div>
 
                         <div class="item-list-data">Ciudad:</div>
