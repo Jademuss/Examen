@@ -14,7 +14,11 @@
 
     <body>
         <div class="menu-container">
+<<<<<<< HEAD
             <a id="ref" href="{% url 'index' %}"><span class="icon-shop"></span></a>
+=======
+            <a id="ref" href="{% url 'index' %}"><img class="icon-paw" src="{% static 'img/icono.jpg' %}"></img></a>
+>>>>>>> 2bd48d276ddcb56354395bf73f118a8ed85df07a
             <label id="btn-menu" class="icon-bars"></label>
             <nav id="navegador">
                 <ul>
@@ -37,23 +41,23 @@
                 {% if tienda.nombre %}
                 <div class="item-list">
                     {% if user.is_superuser %}
-                    <div class="item-list-info">
-                        <div class="confirmacion">
-                            <p> 
-                                Esta tienda aun requiere validacion.
-                            </p>
+                        <div class="item-list-info">
+                            <div class="confirmacion">
+                                <p> 
+                                    Esta tienda aun requiere validacion.
+                                </p>
+                            </div>
                         </div>
-                    </div>
                     {% else %}
-                    <div class="item-list-info">
-                        <div class="confirmacion">
-                            <p> 
-                                El ingreso de la tienda se realizo correctamente,
-                                este sera revisado por un administrador para comprobar
-                                que los datos proporcionados son correctos. 
-                            </p>
+                        <div class="item-list-info">
+                            <div class="confirmacion">
+                                <p> 
+                                    El ingreso de la tienda se realizo correctamente,
+                                    este sera revisado por un administrador para comprobar
+                                    que los datos proporcionados son correctos. 
+                                </p>
+                            </div>
                         </div>
-                    </div>
                     {% endif %} 
                      
                     <div class="item-list-img">
